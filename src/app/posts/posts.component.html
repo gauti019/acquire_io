@@ -1,0 +1,60 @@
+<h1 class="jumbotron bg-primary p-4 text-light">All Tasks</h1>
+<div class="row p-3 border-bottom border-light" *ngFor="let post of posts; trackBy: trackByFunction"
+  (click)="detail(post)">
+  <div class='col-md-4 offset-md-1'>
+    <div data-toggle="modal" data-target="#detailModal" class="detail">
+      <h3><b>{{post.title}}</b></h3>
+      <div class="pt-2"><i class="fas fa-arrow-right pr-3"></i>{{post.description}}</div>
+    </div>
+  </div>
+  <div class='col-md-1 offset-md-1'>
+    <div data-toggle="modal" data-target="#detailModal" class="detail">
+      <h3><b> </b></h3>
+    </div>
+  </div>
+  <div class="col-md-1 offset-1">
+    <button mat-raised-button mat-button color=primary (click)="deletePost(post.title)">Delete post</button>
+  </div>
+  <div class="col-md-1 offset-1">
+    <span class="badge title badge-pill badge-light p-2">
+      <i class="far fa-calendar-alt pr-3"></i> {{post.formattedDate}} </span>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+
+  <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Task Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-2"> <b>Title</b> </div>
+          <div class="col-4 offset-1"> {{taskDetail.title}} </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-2"> <b>Date</b> </div>
+          <div class="col-4 offset-1"> {{taskDetail.formattedDate}} </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-2"> <b>Description</b> </div>
+          <div class="col-4 offset-1"> {{taskDetail.description}} </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!showCompletedTasks" type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="editTask(taskDetail.title)">Edit task</button>
+        <!-- <button *ngIf="showCompletedTasks" type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showLive()">Show Live</button> -->
+      </div>
+    </div>
+  </div>
+</div>

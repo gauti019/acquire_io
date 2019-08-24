@@ -1,0 +1,61 @@
+<mat-card class="example-card">
+
+   <mat-card-header>
+     <mat-card-title>Login</mat-card-title>
+   </mat-card-header>
+
+   <mat-card-content>
+     <form class="example-form" #myLoginForm="ngForm" >
+       <table class="example-full-width" cellspacing="0">
+
+
+         <tr>
+           <td>
+             <mat-form-field class="example-full-width">
+               <input matInput id="username1" class="form-control" name="username1"  placeholder="Username" [(ngModel)]="username" #username1="ngModel" required>
+             </mat-form-field>
+           </td>
+         </tr>
+          <div *ngIf="username1.invalid && (username1.dirty || username1.touched)"
+                class="alert alert-danger">
+              <div  class="isa_error"  *ngIf="username1.errors.required">
+                Field can not be empty
+              </div>
+          </div>
+
+
+
+         <tr>
+           <td>
+             <mat-form-field class="example-full-width">
+               <input matInput name="password1" id="password1" placeholder="Password" [(ngModel)]="password" type="password" #password1="ngModel"  required>
+             </mat-form-field>
+           </td>
+         </tr>
+         <div *ngIf="password1.invalid && (password1.dirty || password1.touched)"
+               class="alert alert-danger">
+              <div  class="isa_error"  *ngIf="password1.errors.required">
+                  Field can not be empty
+              </div>
+         </div>
+
+
+
+       </table>
+     </form>
+
+     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+
+   </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button (click)="login()"  [disabled]="!myLoginForm.valid" color="primary">Login</button>
+      </mat-card-actions>
+
+<!--
+     <mat-card-actions>
+       <button mat-raised-button (click)="login2()" color="primary">Login</button>
+     </mat-card-actions> -->
+
+ </mat-card>
+

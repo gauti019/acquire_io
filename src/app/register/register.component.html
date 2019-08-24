@@ -1,0 +1,146 @@
+<div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp">
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+
+<mat-card class="example-card">
+
+    <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+       <form name="register" #myForm="ngForm" class="example-form">
+         <table class="example-full-width" cellspacing="0">
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                <input matInput id="fname" name="fname"  class="form-control" required  [(ngModel)]="userRegister.fname"  #fname="ngModel" placeholder="First Name"  >
+              </mat-form-field>
+            </td>
+          </tr>
+          <div *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                class="alert alert-danger">
+              <div  class="isa_error"  *ngIf="fname.errors.required">
+                Field can not {{myVar}} be empty
+              </div>
+              <div  class="isa_error"  *ngIf="fname.errors.minlength">
+                Name must be longer than 4 characters.
+              </div>
+          </div>
+
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                  <input matInput id="lname" name="lname" class="form-control" required [(ngModel)]="userRegister.lname" #lname="ngModel"  placeholder="Last Name" >
+              </mat-form-field>
+            </td>
+          </tr>
+          <div *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                class="alert alert-danger">
+              <div  class="isa_error"  *ngIf="lname.errors.required">
+                Field can not be empty
+              </div>
+          </div>
+
+
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                  <input matInput for="email" id="email" name="email" class="form-control" required [(ngModel)]="userRegister.email"  #email="ngModel"  placeholder="Enter your Email" ng-model="email" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" >
+              </mat-form-field>
+            </td>
+          </tr>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="alert alert-danger">
+                <div  class="isa_error"  *ngIf="email.errors.required">
+                  Field can not be empty aand
+                </div>
+                <div  class="isa_error"  *ngIf="email.errors.pattern">
+                  Please enter a valid Email.
+                </div>
+          </div>
+
+
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                  <input matInput id="uname" name="uname" class="form-control" minlength='5' [(ngModel)]="userRegister.uname" #uname="ngModel" placeholder="Username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <mat-card-actions>
+            <button mat-raised-button type="button"  (click)="checkAvailablity()"  [disabled]="uname.invalid"  color="primary"> Check Availablity</button>
+          </mat-card-actions>
+          <div *ngIf="uname.invalid && (uname.dirty || uname.touched)"
+                class="alert alert-danger">
+              <div  class="isa_error"  *ngIf="uname.errors.required">
+                Field can not be empty
+              </div>
+              <div  class="isa_error"  *ngIf="uname.errors.minlength">
+                Username must be longer than 4 characters.
+              </div>
+              <!-- <div class="isa_error"  *ngIf="flagUsernameUnavailable">
+                Username already taken. Please try another one.
+              </div> -->
+          </div>
+
+
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                   <input matInput id="password1" class="form-control" minlength="6" name="password1" [(ngModel)]="userRegister.password1" #password1="ngModel" type="password"  placeholder="Password" required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <!-- <ng2-password-strength-bar
+                    [passwordToCheck]="userRegister.password1"
+                    [barLabel]="barLabel"
+                    [barColors]="myColors"
+                    [baseColor]="baseColor"
+                    [strengthLabels]="strengthLabels"
+                    (onStrengthChanged)="strengthChanged($event)">
+          </ng2-password-strength-bar> -->
+
+          <div *ngIf="password1.invalid && (password1.dirty || password1.touched)"  class="alert alert-danger">
+              <div  class="isa_error" *ngIf="password1.errors.required">
+                Field can not be empty
+              </div>
+              <div  *ngIf="password1.errors.minlength">
+                <div class="isa_error">Password must be longer than 6 characters.</div>
+              </div>
+          </div>
+
+          <tr>
+            <td>
+              <mat-form-field class="md-block">
+                    <input matInput id="password2" class="form-control" [(ngModel)]="userRegister.password2" #password2="ngModel" name="password2"  type="password" placeholder="Confirm Password" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <div *ngIf="password2.invalid && (password2.dirty || password2.touched)"  class="alert alert-danger">
+                <div class="isa_error" *ngIf="password2.errors.required">
+                  <div class="isa_error">Field must not be empty.</div>
+                </div>
+                <div class="isa_error" *ngIf=" password2.value &&  (password1.value != password2.value)">
+                  <div class="isa_error">Both passwords must be equal.</div>
+                </div>
+          </div>
+
+
+         <mat-card-actions>
+           <button mat-raised-button type="button"  [disabled]="( !myForm.valid  || (password1.value != password2.value) || !flagUsernameAvailable )"    (click)="registerFunction()"    color="primary"> Register</button>
+         </mat-card-actions>
+
+
+        </table>
+       </form>
+    </mat-card-content>
+
+
+  </mat-card>
+</md-content>

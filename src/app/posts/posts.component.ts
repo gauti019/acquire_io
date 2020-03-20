@@ -13,6 +13,7 @@ import { Config } from '../app.config';
 })
 export class PostComponent implements OnInit {
 
+  public showCompletedTasks: boolean;
   public posts: Array<any> = [];
   private formattedTasks: any;
   public taskDetail: any = {};

@@ -1,1 +1,2 @@
 k8-config.yaml
+# command for running further shit -> $kubectl --kubeconfig="./k8-config.yaml" apply -f SPA-deployment.yaml

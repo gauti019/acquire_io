@@ -1,0 +1,17 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: kube-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        label-key : k8-deploy-label-value  
+    spec:
+      containers:
+        - name: frontend-angular-build-deployment
+          image: gauti019/ci-cd:v1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80

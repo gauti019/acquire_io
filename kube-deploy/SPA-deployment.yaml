@@ -6,15 +6,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-    app: nginx
+      app: angular-k8-deploy
   template:
     metadata:
       labels:
-        app : angular-k8-deploy  
+        app: angular-k8-deploy
     spec:
       containers:
         - name: frontend-angular-build
           image: gauti019/ci-cd:v1
           imagePullPolicy: Always
           ports:
-          - containerPort: 80
+            - containerPort: 80

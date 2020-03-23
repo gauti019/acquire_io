@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend-angular-build
-          image: gauti019/ci-cd:v1
+          image: gauti019/ci-cd:v3
           imagePullPolicy: Always
           ports:
             - containerPort: 80

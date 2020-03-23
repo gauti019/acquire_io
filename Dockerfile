@@ -13,3 +13,4 @@ FROM nginx:1.15
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 #Copy default nginx configuration
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+RUN nginx -c /etc/nginx/conf.d/default.conf
